@@ -50,10 +50,10 @@ class TestAssessmentFunctions(unittest.TestCase):
         self.assertEqual(reverse_string_list_comprehension("madam"), "madam")
 
     def test_count_characters_above_threshold(self):
-        self.assertEqual(count_characters_above_threshold("aabbc", 1), 3) # a, b, c (a:2, b:2, c:1. All > 1? No, c is not. a,b are. This needs to be >= threshold for count to be included in the count for the character)
+        self.assertEqual(count_characters_above_threshold("aabbc", 1), 2) # a, b, c (a:2, b:2, c:1. All > 1? No, c is not. a,b are. This needs to be >= threshold for count to be included in the count for the character)
         # Let's redefine: count of unique characters whose own count is > threshold
         # a:2, b:2, c:1. threshold=1. Chars > 1 are 'a' and 'b'. So result is 2.
-        self.assertEqual(count_characters_above_threshold("aaabbc", 2), 2) # a:3, b:2, c:1. threshold=2. Chars > 2 are 'a'. So result is 1.
+        self.assertEqual(count_characters_above_threshold("aaabbc", 2), 1) # a:3, b:2, c:1. threshold=2. Chars > 2 are 'a'. So result is 1.
         # Wait, if the char count is 3, and threshold is 2, then 3 > 2. 'a' counts.
         # if char count is 2, and threshold is 2, then 2 is not > 2. 'b' does not count.
         # This interpretation means the example was: text="aaabbc", threshold=2 -> 'a' is 3, so 'a' counts. Output 1.
@@ -73,7 +73,7 @@ class TestAssessmentFunctions(unittest.TestCase):
         self.assertEqual(count_characters_above_threshold("Hello World", 2), 1) # l:3. Unique: l (1 char)
         self.assertEqual(count_characters_above_threshold("hello", 10), 0)      # No char appears > 10 times
         self.assertEqual(count_characters_above_threshold("", 0), 0)            # Empty string
-        self.assertEqual(count_characters_above_threshold("MiSsIsSiPpI", 3), 1) # s:4, i:4, p:2, m:1. Case-insensitive: M:1, I:4, S:4, P:2. counts: i:4, s:4, p:2, m:1. >3 are i,s. Result 2.
+        self.assertEqual(count_characters_above_threshold("MiSsIsSiPpI", 3), 2) # s:4, i:4, p:2, m:1. Case-insensitive: M:1, I:4, S:4, P:2. counts: i:4, s:4, p:2, m:1. >3 are i,s. Result 2.
         # Correcting case-insensitive test for "MiSsIsSiPpI", threshold=3
         # Lowercase: "mississippi"
         # Counts: m:1, i:4, s:4, p:2
