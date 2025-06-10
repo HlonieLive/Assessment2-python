@@ -15,16 +15,14 @@ def calculate_rectangle_area(length: int or float, width: int or float) -> int o
     Learning Outcomes: Functions, Basic error handling (simple conditional check).
     """
     if not isinstance(length, int):
-        if not isinstance(length, float):
+        if not isinstance(length, float):    
             raise TypeError("Length must be an Integer or Float.")
     if not isinstance(width, int):
         if not isinstance(width, float):
             raise TypeError("Width must be an Integer or Float.")
-        
-    if length <= 0 or width<=0:
-        return 0
-    return length*width
-
+    
+    return 0 if length<= 0 or width<= 0 else length*width
+# print(calculate_rectangle_area(5.0, 5))
 
 def sum_even_numbers(numbers_list: list)-> int:
     """
